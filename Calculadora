@@ -1,0 +1,30 @@
+ventas = []
+
+def registrar_venta():
+    producto = input("Nombre del producto: ")
+    precio = float(input("Precio del producto: "))
+    cantidad = int(input("Cantidad vendida: "))
+    total = precio * cantidad
+    ventas.append({"producto": producto, "precio": precio, "cantidad": cantidad, "total": total})
+    print(f"Venta registrada: {producto} x{cantidad} = ${total:.0f}")
+
+def mostrar_ventas():
+    print("\n=== REGISTRO DE VENTAS ===")
+    total_dia = 0
+    for venta in ventas:
+        print(f"{venta['producto']} - {venta['cantidad']}x${venta['precio']} = ${venta['total']}")
+        total_dia += venta['total']
+    print(f"\nTotal del día: ${total_dia}")
+
+while True:
+    print("\n1. Registrar venta\n2. Mostrar ventas\n3. Salir")
+    opcion = input("Selecciona una opción: ")
+    if opcion == "1":
+        registrar_venta()
+    elif opcion == "2":
+        mostrar_ventas()
+    elif opcion == "3":
+        print("Saliendo...")
+        break
+    else:
+        print("Opción no válida.")
