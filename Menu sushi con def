@@ -1,0 +1,37 @@
+sushi_menu = {
+    1: {"nombre": "Sushi Roll Clásico", "precio": 4500},
+    2: {"nombre": "Sushi Tempura", "precio": 5000},
+    3: {"nombre": "Sashimi Salmón", "precio": 6000},
+    4: {"nombre": "Nigiri Atún", "precio": 4000},
+    5: {"nombre": "Makis Variados", "precio": 5500}
+}
+
+pedido = []
+total = 0
+
+def mostrar_menu():
+    print("=== MENÚ DE SUSHI ===")
+    for clave, item in sushi_menu.items():
+        print(f"{clave}. {item['nombre']} - ${item['precio']} CLP")
+
+def hacer_pedido():
+    global total
+    while True:
+        mostrar_menu()
+        opcion = input("Selecciona un número de producto (o escribe 'fin' para terminar): ")
+        if opcion.lower() == "fin":
+            break
+        if not opcion.isdigit() or int(opcion) not in sushi_menu:
+            print("Opción inválida. Intenta nuevamente.")
+            continue
+        opcion = int(opcion)
+        pedido.append(sushi_menu[opcion]["nombre"])
+        total += sushi_menu[opcion]["precio"]
+        print(f"Agregado: {sushi_menu[opcion]['nombre']}")
+
+hacer_pedido()
+
+print("\n=== TU PEDIDO ===")
+for item in pedido:
+    print(f"- {item}")
+print(f"Total a pagar: ${total} CLP")
